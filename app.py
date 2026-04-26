@@ -28,45 +28,63 @@ st.markdown("""
     --border: #2a2a3a;
 }
 
-html, body, [class*="css"] {
-    font-family: 'JetBrains Mono', monospace;
-    background-color: var(--bg);
-    color: var(--text);
+/* Base - target stApp not [class*="css"] */
+.stApp {
+    background-color: var(--bg) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--text) !important;
 }
 
-.stApp { background-color: var(--bg); }
+/* Prevent white flash on load */
+html, body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+/* Main content area */
+.main .block-container {
+    background-color: var(--bg) !important;
+    padding-top: 1rem;
+}
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background: var(--surface);
-    border-right: 1px solid var(--border);
+    background: var(--surface) !important;
+    border-right: 1px solid var(--border) !important;
 }
-section[data-testid="stSidebar"] .stMarkdown h1,
-section[data-testid="stSidebar"] .stMarkdown h2,
-section[data-testid="stSidebar"] .stMarkdown h3 {
-    font-family: 'Syne', sans-serif;
+section[data-testid="stSidebar"] > div {
+    background: var(--surface) !important;
+}
+
+/* All text elements */
+p, span, label, div {
     color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
 }
 
 /* Headers */
-h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !important; }
+h1, h2, h3, h4,
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    font-family: 'Syne', sans-serif !important;
+    color: var(--text) !important;
+}
 
 /* Buttons */
 .stButton > button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    padding: 0.6rem 1.5rem;
-    transition: all 0.2s;
+    background: var(--accent) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-family: 'Syne', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.2s !important;
 }
 .stButton > button:hover {
-    background: #9580ff;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(124,106,255,0.4);
+    background: #9580ff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 20px rgba(124,106,255,0.4) !important;
 }
 
 /* Inputs */
@@ -84,30 +102,100 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !imp
     box-shadow: 0 0 0 1px var(--accent) !important;
 }
 
-/* File uploader */
-[data-testid="stFileUploader"] {
-    background: var(--surface2);
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    padding: 1rem;
-}
-
 /* Selectbox */
 .stSelectbox > div > div {
     background: var(--surface2) !important;
     border-color: var(--border) !important;
     color: var(--text) !important;
 }
+.stSelectbox svg { fill: var(--text) !important; }
 
-/* Expander */
-.streamlit-expanderHeader {
-    background: var(--surface2) !important;
-    border: 1px solid var(--border) !important;
-    color: var(--text) !important;
-    font-family: 'Syne', sans-serif !important;
+/* Slider */
+.stSlider > div > div > div {
+    background: var(--accent) !important;
 }
 
-/* Answer box */
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background: var(--surface2) !important;
+    border: 1px dashed var(--border) !important;
+    border-radius: 4px !important;
+    padding: 1rem !important;
+}
+[data-testid="stFileUploadDropzone"] {
+    background: var(--surface2) !important;
+    border-color: var(--border) !important;
+}
+
+/* Metrics */
+[data-testid="stMetricValue"] {
+    color: var(--accent) !important;
+    font-family: 'Syne', sans-serif !important;
+}
+[data-testid="stMetricLabel"] {
+    color: var(--muted) !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    background: var(--surface) !important;
+    border-bottom: 1px solid var(--border) !important;
+    gap: 0 !important;
+}
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    color: var(--muted) !important;
+    font-family: 'Syne', sans-serif !important;
+    font-size: 0.85rem !important;
+    border-bottom: 2px solid transparent !important;
+}
+.stTabs [aria-selected="true"] {
+    background: transparent !important;
+    color: var(--text) !important;
+    border-bottom: 2px solid var(--accent) !important;
+}
+.stTabs [data-baseweb="tab-panel"] {
+    background: var(--bg) !important;
+    padding-top: 1.5rem !important;
+}
+
+/* Expander */
+details {
+    background: var(--surface2) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 4px !important;
+}
+summary {
+    color: var(--text) !important;
+    font-family: 'Syne', sans-serif !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* Toggle */
+[data-testid="stToggle"] span {
+    background: var(--surface2) !important;
+}
+
+/* Divider */
+hr { border-color: var(--border) !important; }
+
+/* Spinner */
+.stSpinner > div { border-top-color: var(--accent) !important; }
+
+/* Alert boxes */
+.stAlert {
+    background: var(--surface2) !important;
+    border-radius: 4px !important;
+    color: var(--text) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Custom components ── */
 .answer-box {
     background: var(--surface2);
     border-left: 3px solid var(--accent);
@@ -118,7 +206,6 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !imp
     line-height: 1.7;
 }
 
-/* Citation card */
 .citation-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -143,24 +230,6 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !imp
 .citation-card.csv-source .source-tag { background: var(--accent3); color: #0a0a0f; }
 .citation-card.web-source .source-tag { background: var(--accent2); }
 
-/* Metric cards */
-.metric-row {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
-}
-.metric-card {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 0.8rem;
-    text-align: center;
-}
-.metric-card .val { font-size: 1.5rem; font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); }
-.metric-card .lbl { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-
-/* Header banner */
 .header-banner {
     background: linear-gradient(135deg, #111118 0%, #1a1a2e 100%);
     border: 1px solid var(--border);
@@ -180,10 +249,9 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !imp
     background: radial-gradient(circle, rgba(124,106,255,0.15) 0%, transparent 70%);
     pointer-events: none;
 }
-.header-banner h1 { margin: 0; font-size: 1.8rem; }
+.header-banner h1 { margin: 0; font-size: 1.8rem; color: var(--text) !important; }
 .header-banner p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.05em; }
 
-/* Status badge */
 .status-badge {
     display: inline-block;
     padding: 3px 10px;
@@ -196,33 +264,6 @@ h1, h2, h3 { font-family: 'Syne', sans-serif !important; color: var(--text) !imp
 .status-ready { background: rgba(106,255,212,0.15); color: var(--accent3); border: 1px solid rgba(106,255,212,0.3); }
 .status-pending { background: rgba(255,106,106,0.15); color: var(--accent2); border: 1px solid rgba(255,106,106,0.3); }
 
-/* Divider */
-hr { border-color: var(--border) !important; }
-
-/* Info/warning boxes */
-.stInfo, .stWarning, .stSuccess, .stError {
-    border-radius: 4px !important;
-}
-
-/* Tab styling */
-.stTabs [data-baseweb="tab-list"] {
-    background: var(--surface) !important;
-    border-bottom: 1px solid var(--border) !important;
-}
-.stTabs [data-baseweb="tab"] {
-    color: var(--muted) !important;
-    font-family: 'Syne', sans-serif !important;
-    font-size: 0.85rem !important;
-}
-.stTabs [aria-selected="true"] {
-    color: var(--text) !important;
-    border-bottom: 2px solid var(--accent) !important;
-}
-
-/* Spinner */
-.stSpinner > div { border-top-color: var(--accent) !important; }
-
-/* Chat messages */
 .chat-message {
     padding: 1rem;
     border-radius: 4px;
